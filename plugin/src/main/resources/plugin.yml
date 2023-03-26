@@ -1,0 +1,9 @@
+main: de.safespacegerman.spacekitten.SpaceKittenConnectionPlugin
+name: SpaceKittenConnection-Bukkit
+version: ${project.version}
+api-version: 1.19
+
+authors:
+  - LuciferMorningstarDev
+
+load: POSTWORLD

@@ -1,0 +1,20 @@
+config-version: 1 # -> DO NOT CHANGE
+
+# Print debug messages to the console?
+debug: false
+
+# The Authentication String for internal API requests ( "Authorization": "internalAuth" )
+# internal_authentication_password_min_64_characters_required_in_here_or_the_server_does_not_start
+internalAuth: 'Bearer <token>'
+
+# the hostname of your webserver ( Fill in if you want to enable hostCheck )
+hostname: example.com
+# should the server check for a specific hostname
+# if enabled only request to the given hostname are valid
+hostCheck: false
+# the default port in which the server should run
+port: 3000
+# the bound address for the server ( 127.0.0.1 - local / 0.0.0.0 - public )
+bind: 127.0.0.1
+
+
