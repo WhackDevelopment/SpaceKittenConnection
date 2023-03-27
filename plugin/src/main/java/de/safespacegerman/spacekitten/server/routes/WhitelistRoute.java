@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import de.safespacegerman.spacekitten.SpaceKittenConnectionPlugin;
 import de.safespacegerman.spacekitten.server.routing.RouteExecutor;
 import de.safespacegerman.spacekitten.types.RequestData;
+import de.safespacegerman.spacekitten.types.WhitelistPlayer;
 import de.safespacegerman.spacekitten.types.payloads.DataPayload;
 import de.safespacegerman.spacekitten.types.payloads.Payload;
 import org.bukkit.Bukkit;
@@ -81,7 +82,8 @@ public class WhitelistRoute extends RouteExecutor {
 
             case "list": {
                 try {
-                    return DataPayload.create(Bukkit.getServer().getWhitelistedPlayers());
+                    List<WhitelistPlayer> whitelisted = Bukkit.getServer().getWhitelistedPlayers().stream().map(WhitelistPlayer::of).collect(Collectors.toList());
+                    return DataPayload.create(whitelisted);
                 } catch(Exception e) {
                     e.printStackTrace();
                     return Payload.internalServerError();
