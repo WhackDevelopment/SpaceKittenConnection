@@ -3,6 +3,7 @@ package de.safespacegerman.spacekitten;
 import de.safespacegerman.spacekitten.server.ServerThread;
 import de.safespacegerman.spacekitten.server.error.ErrorPageGenerator;
 import de.safespacegerman.spacekitten.server.routes.IndexRoute;
+import de.safespacegerman.spacekitten.server.routes.InfoRoute;
 import de.safespacegerman.spacekitten.server.routes.PingRoute;
 import de.safespacegerman.spacekitten.server.routes.WhitelistRoute;
 import org.bukkit.Bukkit;
@@ -21,6 +22,7 @@ import java.util.logging.Logger;
  * @since 25.03.2023
  */
 public class SpaceKittenConnectionPlugin extends JavaPlugin {
+    public static long lastRestart = 0L;
     private static SpaceKittenConnectionPlugin instance;
     private BukkitRestApiProviderImpl restApiProvider;
     private ServerThread serverThread;
@@ -36,6 +38,7 @@ public class SpaceKittenConnectionPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        lastRestart = System.currentTimeMillis();
         this.saveDefaultConfig();
         this.reloadConfig();
 
@@ -69,6 +72,7 @@ public class SpaceKittenConnectionPlugin extends JavaPlugin {
             instance.serverThread.getServer().addRouteExecutor(new IndexRoute(instance));
             instance.serverThread.getServer().addRouteExecutor(new PingRoute(instance));
             instance.serverThread.getServer().addRouteExecutor(new WhitelistRoute(instance));
+            instance.serverThread.getServer().addRouteExecutor(new InfoRoute(instance));
 
             try {
                 instance.serverThread.start();
