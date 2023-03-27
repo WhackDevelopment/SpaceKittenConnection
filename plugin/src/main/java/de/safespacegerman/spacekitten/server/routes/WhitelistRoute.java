@@ -24,7 +24,7 @@ public class WhitelistRoute extends RouteExecutor {
     private SpaceKittenConnectionPlugin plugin;
 
     public WhitelistRoute(SpaceKittenConnectionPlugin plugin) {
-        super("/whitelist/");
+        super("/whitelist");
         this.plugin = plugin;
     }
 

@@ -24,7 +24,7 @@ public class WebServer {
         this.httpServer.removeListener("grizzly"); // remove default grizzly listeners
         this.httpServer.addListener(new HTTPListener(serverConfiguration));
         this.sConf = this.httpServer.getServerConfiguration();
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> httpServer.shutdownNow()));
+        // Runtime.getRuntime().addShutdownHook(new Thread(() -> httpServer.shutdownNow()));
     }
 
     public void start() {
@@ -53,7 +53,7 @@ public class WebServer {
 
     public boolean addRouteExecutor(RouteExecutor executor) {
         try {
-            getConfig().addHttpHandler(executor, executor.getName());
+            getConfig().addHttpHandler(executor, executor.path());
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();

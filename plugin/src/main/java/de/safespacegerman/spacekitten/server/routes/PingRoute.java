@@ -16,7 +16,7 @@ public class PingRoute extends RouteExecutor {
     private SpaceKittenConnectionPlugin plugin;
 
     public PingRoute(SpaceKittenConnectionPlugin plugin) {
-        super("/ping/");
+        super("/ping");
         this.plugin = plugin;
     }
 

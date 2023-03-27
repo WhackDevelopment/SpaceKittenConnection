@@ -21,7 +21,7 @@ public class InfoRoute extends RouteExecutor {
     private SpaceKittenConnectionPlugin plugin;
 
     public InfoRoute(SpaceKittenConnectionPlugin plugin) {
-        super("/info/");
+        super("/info");
         this.plugin = plugin;
     }
 

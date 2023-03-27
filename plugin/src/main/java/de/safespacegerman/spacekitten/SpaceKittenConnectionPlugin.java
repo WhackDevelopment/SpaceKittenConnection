@@ -66,13 +66,15 @@ public class SpaceKittenConnectionPlugin extends JavaPlugin {
 
         Thread initializer = new Thread(() -> {
             boolean debug = instance.getConfig().getBoolean("debug", false);
+
             instance.serverThread = new ServerThread(instance, instance.restApiProvider, "SpaceKittenConnectionPlugin-WebServer");
 
-            instance.serverThread.getServer().getHttpServer().getServerConfiguration().setDefaultErrorPageGenerator(new ErrorPageGenerator());
             instance.serverThread.getServer().addRouteExecutor(new IndexRoute(instance));
+            instance.serverThread.getServer().addRouteExecutor(new InfoRoute(instance));
             instance.serverThread.getServer().addRouteExecutor(new PingRoute(instance));
             instance.serverThread.getServer().addRouteExecutor(new WhitelistRoute(instance));
-            instance.serverThread.getServer().addRouteExecutor(new InfoRoute(instance));
+
+            instance.serverThread.getServer().getHttpServer().getServerConfiguration().setDefaultErrorPageGenerator(new ErrorPageGenerator());
 
             try {
                 instance.serverThread.start();
