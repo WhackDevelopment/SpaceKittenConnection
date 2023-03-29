@@ -6,4 +6,7 @@ api-version: 1.19
 authors:
   - LuciferMorningstarDev
 
+depend:
+  - SpaceDependencies
+
 load: POSTWORLD
