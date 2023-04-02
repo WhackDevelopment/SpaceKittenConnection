@@ -1,5 +1,6 @@
 package de.safespacegerman.spacekitten.types;
 
+import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 
 /**
@@ -18,6 +19,8 @@ public class CurrentOnlinePlayer {
     private int currentLevel;
     private float currentExperience;
 
+    private int deathCount;
+
     public CurrentOnlinePlayer(Player pl) {
         this.uuid = pl.getUniqueId().toString();
         this.username = pl.getName();
@@ -26,6 +29,11 @@ public class CurrentOnlinePlayer {
         this.currentPing = pl.spigot().getPing();
         this.currentLevel = pl.getLevel();
         this.currentExperience = pl.getExp();
+        try {
+            this.deathCount = pl.getStatistic(Statistic.DEATHS);
+        } catch(Exception e) {
+            this.deathCount = 0;
+        }
     }
 
     public static CurrentOnlinePlayer of(Player pl) {
